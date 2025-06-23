@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe Neon</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .start-screen, .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .start-screen {
+      gap: 20px;
+    }
+
+    .start-btn {
+      background: #ff00cc;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff00cc;
+    }
+
+    .game-container {
+      display: none;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: #1e0033;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #8000ff;
+      color: white;
+      cursor: pointer;
+    }
+
+    .cell.X {
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff;
+    }
+
+    .cell.O {
+      color: #ff00cc;
+      text-shadow: 0 0 10px #ff00cc;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 400px) {
+      .board {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+      }
+
+      .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="start-screen" id="startScreen">
+    <h1>Tic Tac Toe</h1>
+    <button class="start-btn" onclick="startGame()">Start Game</button>
+  </div>
+
+  <div class="game-container" id="gameContainer">
+    <div class="status" id="status">Player X's turn</div>
+    <div class="board" id="board"></div>
+  </div>
+
+  <script>
+    const startScreen = document.getElementById("startScreen");
+    const gameContainer = document.getElementById("gameContainer");
+    const boardEl = document.getElementById("board");
+    const statusEl = document.getElementById("status");
+
+    let currentPlayer = "X";
+    let board = Array(9).fill(null);
+    let gameOver = false;
+
+    function startGame() {
+      startScreen.style.display = "none";
+      gameContainer.style.display = "flex";
+      renderBoard();
+    }
+
+    function renderBoard() {
+      boardEl.innerHTML = "";
+      board.forEach((cell, index) => {
+        const cellEl = document.createElement("div");
+        cellEl.classList.add("cell");
+        if (cell) {
+          cellEl.classList.add(cell);
+          cellEl.textContent = cell;
+        }
+        cellEl.addEventListener("click", () => handleMove(index));
+        boardEl.appendChild(cellEl);
+      });
+    }
+
+    function handleMove(index) {
+      if (board[index] || gameOver) return;
+
+      board[index] = currentPlayer;
+      renderBoard();
+      if (checkWinner()) {
+        statusEl.textContent = `Player ${currentPlayer} wins!`;
+        gameOver = true;
+        return;
+      }
+
+      if (board.every(cell => cell)) {
+        statusEl.textContent = "It's a draw!";
+        gameOver = true;
+        return;
+      }
+
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      statusEl.textContent = `Player ${currentPlayer}'s turn`;
+    }
+
+    function checkWinner() {
+      const winCombos = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+      ];
+      return winCombos.some(combo => 
+        combo.every(i => board[i] === currentPlayer)
+      );
+    }
+  </script>
+</body>
+</html>
