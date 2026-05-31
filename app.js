@@ -1,3 +1,5 @@
+alert("APP JS LOADED");
+
 const localVideo = document.getElementById("localVideo");
 
 let localStream;
@@ -14,11 +16,15 @@ async function startCamera() {
     alert("Camera Started");
 
   } catch (e) {
-    console.log(e);
-    alert("Camera Permission Error");
+    console.error(e);
+    alert("Camera Permission Error: " + e.message);
   }
 }
 
-document
-  .getElementById("startBtn")
-  .addEventListener("click", startCamera);
+const startBtn = document.getElementById("startBtn");
+
+if (startBtn) {
+  startBtn.addEventListener("click", startCamera);
+} else {
+  alert("startBtn not found");
+}
