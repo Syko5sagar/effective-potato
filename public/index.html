@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Random Video Chat</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="module" src="app.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Random Video Chat</h2>
+
+<div class="videos">
+
+<video id="localVideo" autoplay playsinline muted></video>
+
+<video id="remoteVideo" autoplay playsinline></video>
+
+</div>
+
+<div class="controls">
+
+<button id="startBtn">
+Start Chat
+</button>
+
+<button id="skipBtn">
+Skip User
+</button>
+
+</div>
+
+<div class="chatBox">
+
+<div id="messages"></div>
+
+<div class="sendArea">
+
+<input
+id="messageInput"
+placeholder="Type message..."
+>
+
+<button id="sendBtn">
+Send
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
