@@ -5,134 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile Card</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #000000; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; position: relative; }
 
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+        #confetti-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
 
-        .profile-container {
-            width: 100%;
-            max-width: 450px;
-            background-color: #000000;
-            padding: 25px 20px;
-            border: 1px solid #262626;
-            border-radius: 12px;
-        }
+        .profile-container { width: 100%; max-width: 450px; background-color: #000000; padding: 25px 20px; border: 1px solid #262626; border-radius: 12px; display: flex; flex-direction: column; position: relative; z-index: 10; }
 
-        .header-section {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-        }
+        .congrats-banner { text-align: center; font-size: 26px; font-weight: 800; color: #FFD700; margin-bottom: 20px; animation: textPop 0.6s ease-out; }
+        @keyframes textPop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-        .profile-pic-container {
-            position: relative;
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            border: 3px solid #1c2732;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 25px;
-            flex-shrink: 0;
-            background-color: #121212;
-            overflow: hidden;
-        }
+        .header-section { display: flex; align-items: center; margin-bottom: 18px; }
+        .profile-pic-container { width: 96px; height: 96px; border-radius: 50%; border: 3px solid #1c2732; display: flex; justify-content: center; align-items: center; margin-right: 25px; overflow: hidden; background: #121212; }
+        .profile-pic { width: 100%; height: 100%; object-fit: cover; }
 
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .profile-name-row { font-size: 18px; font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
+        .stats-container { display: flex; gap: 28px; }
+        .stat-box { text-align: center; }
+        .stat-num { font-size: 18px; font-weight: 700; display: block; }
+        .stat-text { font-size: 14px; color: #ffffff; }
 
-        .right-details {
-            flex-grow: 1;
-        }
+        .bio-section { padding-left: 5px; font-size: 15px; margin-bottom: 25px; line-height: 1.5; }
+        .bio-row { margin-bottom: 4px; }
+        .gray-text { color: #a8a8a8; }
 
-        .profile-name-row {
-            font-size: 20px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 12px;
-            letter-spacing: -0.2px;
-        }
-
-        .stats-container {
-            display: flex;
-            gap: 28px;
-        }
-
-        .stat-box {
-            text-align: center;
-        }
-
-        .stat-num {
-            font-size: 18px;
-            font-weight: 700;
-            color: #ffffff;
-            display: block;
-        }
-
-        .stat-text {
-            font-size: 14px;
-            color: #ffffff;
-        }
-
-        .bio-section {
-            padding-left: 5px;
-            font-size: 15px;
-            line-height: 1.5;
-            color: #ffffff;
-        }
-
-        .bio-row {
-            margin-bottom: 4px;
-        }
-
-        .gray-text {
-            color: #a8a8a8;
-        }
+        .verify-btn { display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; background-color: #0095f6; color: #ffffff; font-size: 16px; font-weight: bold; text-decoration: none; padding: 12px; border-radius: 8px; transition: 0.2s; }
+        .instagram-blue-tick { width: 22px; height: 22px; fill: white; }
     </style>
 </head>
 <body>
 
+    <canvas id="confetti-canvas"></canvas>
+
     <div class="profile-container">
+        <div class="congrats-banner">🎉 Congratulations! 🎉</div>
         <div class="header-section">
             <div class="profile-pic-container">
-                <!-- ನಿಮ್ಮ ಗಿಟ್‌ಹಬ್‌ನಲ್ಲಿರುವ ಫೋಟೋದ ಅಸಲಿ ಹೆಸರನ್ನು ಇಲ್ಲಿ ಹಾಕಲಾಗಿದೆ -->
                 <img class="profile-pic" src="./Screenshot_20260607_220046.jpg" alt="Profile">
             </div>
-            
             <div class="right-details">
                 <div class="profile-name-row">
+                    ll___dhanu___shetty___ll<br>
                     sheττy💖👀🪄
                 </div>
                 <div class="stats-container">
-                    <div class="stat-box">
-                        <span class="stat-num">109</span>
-                        <span class="stat-text">posts</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-num">8,536</span>
-                        <span class="stat-text">followers</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-num">246</span>
-                        <span class="stat-text">friends</span>
-                    </div>
+                    <div class="stat-box"><span class="stat-num">109</span><span class="stat-text">posts</span></div>
+                    <div class="stat-box"><span class="stat-num">8,536</span><span class="stat-text">followers</span></div>
+                    <div class="stat-box"><span class="stat-num">246</span><span class="stat-text">friends</span></div>
                 </div>
             </div>
         </div>
@@ -143,7 +62,36 @@
             <div class="bio-row">My land 13 January 👑</div>
             <div class="bio-row">My Life my ... <span class="gray-text">more</span></div>
         </div>
+
+        <a href="enter.html" class="verify-btn">
+            <span>Next Badge Verify</span>
+            <svg class="instagram-blue-tick" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.99 15l-4.07-4.07 1.41-1.41 2.66 2.66 5.66-5.66 1.41 1.41-7.07 7.07z"/></svg>
+        </a>
     </div>
 
+    <script>
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let p = [];
+        for(let i=0; i<150; i++) p.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*4+2, d: Math.random()*5+2});
+        
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+            p.forEach(part => {
+                ctx.beginPath(); ctx.arc(part.x, part.y, part.r, 0, Math.PI*2); ctx.fill();
+                part.y += part.d; if(part.y > canvas.height) part.y = 0;
+            });
+            requestAnimationFrame(draw);
+        }
+        
+        let animationId = requestAnimationFrame(draw);
+        
+        setTimeout(() => {
+            cancelAnimationFrame(animationId);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }, 5000);
+    </script>
 </body>
 </html>
