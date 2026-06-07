@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Profile Verification</title>
-    <!-- ಹೂವಿನ ಮಳೆ ತರಲು ಅಗತ್ಯವಿರುವ ಪ್ರಸಿದ್ಧ ಕಾನ್ಫೆಟ್ಟಿ ಸ್ಕ್ರಿಪ್ಟ್ ಲಿಂಕ್ -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <title>My Profile Card</title>
     <style>
         * {
             margin: 0;
@@ -21,217 +19,129 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 10px;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
-        .container {
+        .profile-container {
             width: 100%;
             max-width: 450px;
             background-color: #000000;
-            padding: 15px;
-            text-align: center;
-        }
-
-        /* ATTRACTIVE GLOWING BANNER */
-        .promo-banner {
-            background: linear-gradient(45deg, #ff007f, #7f00ff, #0095f6);
-            background-size: 200% 200%;
-            animation: gradientMove 4s ease infinite;
-            text-align: center;
-            padding: 14px;
+            padding: 20px;
+            border: 1px solid #262626;
             border-radius: 12px;
-            font-size: 16px;
-            margin-bottom: 25px;
-            box-shadow: 0 0 20px rgba(0, 149, 246, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* HIGHLY ATTRACTIVE CONGRATULATIONS TEXT */
-        .congrats-text {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: #ffffff;
-            text-shadow: 0 0 10px #fff, 0 0 20px #ff007f, 0 0 30px #ff007f;
-            display: block;
-            margin-bottom: 4px;
-            animation: pulseGlow 1.5s infinite alternate;
-        }
-
-        .sub-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: #e0e0e0;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); text-shadow: 0 0 10px #fff, 0 0 20px #ff007f; }
-            100% { transform: scale(1.03); text-shadow: 0 0 15px #fff, 0 0 30px #ff007f, 0 0 40px #7f00ff; }
-        }
-
-        /* Image Box - Exact Screenshot Print */
-        .screenshot-box {
-            width: 100%;
-            overflow: hidden;
-            margin-bottom: 25px;
-            border-radius: 4px;
-        }
-
-        .screenshot-img {
-            width: 100%;
-            display: block;
-            object-fit: contain;
-        }
-
-        /* Action Area and Buttons */
-        .action-area {
-            width: 100%;
-            padding: 0 10px;
-        }
-
-        .enter-button {
-            width: 100%;
-            height: 52px;
-            background: linear-gradient(90deg, #0095f6, #0056b3);
-            color: white;
-            border: none;
-            border-radius: 26px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 149, 246, 0.4);
-            transition: all 0.2s;
-        }
-
-        .enter-button:hover {
-            box-shadow: 0 6px 20px rgba(0, 149, 246, 0.7);
-            transform: translateY(-1px);
-        }
-
-        /* NEXT PAGE CONTENT (Hidden by default) */
-        .success-screen {
-            display: none;
-            text-align: center;
-            padding: 50px 20px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .blue-tick-badge {
-            display: inline-flex;
+        .header-section {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            width: 70px;
-            height: 70px;
-            background-color: #0095f6;
-            color: white;
-            font-size: 38px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px #0095f6;
+            margin-bottom: 18px;
         }
 
-        .success-title {
-            font-size: 26px;
-            font-weight: 800;
+        .profile-pic-container {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 3px solid #1c2732;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .profile-pic {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .right-details {
+            flex-grow: 1;
+        }
+
+        .profile-name-row {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
             margin-bottom: 12px;
+            letter-spacing: -0.2px;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 28px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            display: block;
+        }
+
+        .stat-text {
+            font-size: 14px;
             color: #ffffff;
         }
 
-        .success-info {
+        .bio-section {
+            padding-left: 5px;
             font-size: 15px;
-            color: #a8a8a8;
-            line-height: 1.6;
+            line-height: 1.5;
+            color: #ffffff;
         }
 
-        .redirect-loader {
-            margin-top: 25px;
-            font-size: 13px;
-            color: #0095f6;
+        .bio-row {
+            margin-bottom: 3px;
+        }
+
+        .gray-text {
+            color: #a8a8a8;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- FIRST PAGE -->
-        <div id="step1">
-            <!-- New Attractive Dynamic Banner -->
-            <div class="promo-banner">
-                <span class="congrats-text">🎉 CONGRATULATIONS! 🎉</span>
-                <span class="sub-text">FREE BLUE TICK VERIFY ACTIVE</span>
+    <div class="profile-container">
+        <div class="header-section">
+            <div class="profile-pic-container">
+                <img class="profile-pic" src="1000201496.jpg" alt="Profile">
             </div>
-
-            <!-- Profile Image Print -->
-            <div class="screenshot-box">
-                <img class="screenshot-img" src="https://web.archive.org/web/20260607150000if_/https://i.ibb.co/C5mYg7Mv/1000201482.jpg" alt="Instagram Profile Screenshot">
-            </div>
-
-            <!-- Enter Button -->
-            <div class="action-area">
-                <button class="enter-button" onclick="handleVerifyClick()">ENTER (Apply Free Blue Tick)</button>
+            
+            <div class="right-details">
+                <div class="profile-name-row">
+                    sheττy💖👀🪄
+                </div>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <span class="stat-num">109</span>
+                        <span class="stat-text">posts</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">8,536</span>
+                        <span class="stat-text">followers</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">246</span>
+                        <span class="stat-text">friends</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- SECOND PAGE -->
-        <div id="step2" class="success-screen">
-            <div class="blue-tick-badge">✓</div>
-            <div class="success-title">Verification Success!</div>
-            <div class="success-info">
-                The Free Blue Badge has been successfully generated for your account profile.
-            </div>
-            <div class="redirect-loader">Connecting safely to Instagram Login...</div>
+        <div class="bio-section">
+            <div class="bio-row">Inocent girl 💕👼</div>
+            <div class="bio-row">Hassan hudgi ✨</div>
+            <div class="bio-row">My land 13 January 👑</div>
+            <div class="bio-row">My Life my ... <span class="gray-text">more</span></div>
         </div>
     </div>
-
-    <!-- JavaScript code for Confetti and Redirection -->
-    <script>
-        function handleVerifyClick() {
-            // 1. ಹೂವಿನ ಮಳೆ ಸುರಿಸುವ ಫಂಕ್ಷನ್ (Confetti Rain Burst)
-            var duration = 3 * 1000;
-            var end = Date.now() + duration;
-
-            (function frame() {
-                confetti({
-                    particleCount: 7,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0, y: 0.8 }
-                });
-                confetti({
-                    particleCount: 7,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1, y: 0.8 }
-                });
-
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
-
-            // 2. ಮೊದಲ ಪುಟವನ್ನು ಮರೆಮಾಚಿ ಯಶಸ್ಸಿನ ಪುಟವನ್ನು ತೋರಿಸುವುದು
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-
-            // 3. 3 ಸೆಕೆಂಡುಗಳ ನಂತರ ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್ ಲಾಗಿನ್ ಪೇಜ್‌ಗೆ ರೀಡೈರೆಕ್ಟ್ ಮಾಡುವುದು
-            setTimeout(function() {
-                window.location.href = "https://www.instagram.com/accounts/login/";
-            }, 3000); 
-        }
-    </script>
 
 </body>
 </html>
